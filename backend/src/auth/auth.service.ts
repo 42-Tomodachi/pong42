@@ -65,7 +65,7 @@ export class AuthService {
   }
 
   async getAccessToken(code: string): Promise<string> {
-    const serverAddr = this.configService.get<string>('BACKSERVER_ADDR');
+    const serverAddr = this.configService.get<string>('FRONTSERVER_ADDR');
     const serverPort = this.configService.get<string>('FRONTSERVER_PORT');
     const axiosResult = await axios({
       method: 'post',

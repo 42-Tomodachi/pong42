@@ -229,7 +229,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const socketIds = this.getParticipatingSocketIds(followerId.toString());
       const friendList = await this.userService.getFriendsForEmit(followerId); // 친구 목록 가져오기
 
-<<<<<<< HEAD
       // follower의 소켓이 있는지 확인하고
       if (socketIds.length) {
         // 있으면 해당 소켓에 친구 목록 emit
@@ -239,12 +238,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
           this.wss.to(socketId).emit('updateFriendList', friendList);
         });
       }
-=======
-      // 있으면 해당 소켓에 친구 목록 emit
-      socketIds?.forEach((socketId) => {
-        this.wss.to(socketId).emit('updateFriendList', friendList);
-      });
->>>>>>> main
     });
   }
 

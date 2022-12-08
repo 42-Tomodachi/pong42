@@ -67,4 +67,13 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
   broadcastToLobby(ev: string, ...args: any[]): void {
     if (this && this.server) this.server.to('gameLobby').emit(ev, ...args);
   }
+  
+  broadcastToSelectedLobby(
+    targetsId: number,
+    ev: string,
+    ...args: any[]
+  ): void {
+    const targetSocket: Socket = this.gameEnv.getLobbySocketOfUserId(targetsId);
+    targetSocket?.emit(ev, ...args);
+  }
 }

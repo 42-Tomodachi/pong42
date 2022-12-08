@@ -10,7 +10,11 @@ import axios from 'axios';
 import { User } from 'src/users/entities/users.entity';
 import { UsersService } from '../users/users.service';
 import { EmailService } from '../emails/email.service';
-import { IsDuplicateDto, IsSignedUpDto, SecondAuthResultDto } from './dto/auth.dto';
+import {
+  IsDuplicateDto,
+  IsSignedUpDto,
+  SecondAuthResultDto,
+} from './dto/auth.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
@@ -67,6 +71,7 @@ export class AuthService {
   async getAccessToken(code: string): Promise<string> {
     const serverAddr = this.configService.get<string>('FRONTSERVER_ADDR');
     const serverPort = this.configService.get<string>('FRONTSERVER_PORT');
+    const redirTo = serverAddr + serverPort ? ':' + serverPort : '';
     const axiosResult = await axios({
       method: 'post',
       url: `https://api.intra.42.fr/oauth/token`,
@@ -78,7 +83,7 @@ export class AuthService {
         client_secret:
           process.env.EC2_CLIENT_SECRET ||
           this.configService.get<string>('42API_SECRET'),
-        redirect_uri: `http://${serverAddr}:${serverPort}/callback`,
+        redirect_uri: `http://${redirTo}/callback`,
         code,
       },
     });

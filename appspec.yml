@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/pong42_server
+permissions:
+  - object: /home/ubuntu/pong42_server
+    owner: ubuntu
+    group: ubuntu
+    mode: 755

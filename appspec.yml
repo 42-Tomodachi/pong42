@@ -4,11 +4,16 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/pong42_server
+    overwrite: yes
+
+file_exist_behavior: OVERWRITE
+
 permissions:
   - object: /home/ubuntu/pong42_server
     owner: ubuntu
     group: ubuntu
     mode: 755
+
 hooks:
   ApplicationStop:
     - location: scripts/stop_server.sh

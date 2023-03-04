@@ -3,7 +3,7 @@
 rm /home/ubuntu/pong42_server/backend/.env
 rm /home/ubuntu/pong42_server/backend/package-lock.json
 rm -rf /home/ubuntu/pong42_server/backend/dist
-rm -rf /home/ubuntu/pong42_server/backend/node_modules
+sudo rm -rf /home/ubuntu/pong42_server/backend/node_modules
 mv /home/ubuntu/pong42_server/backend/files /home/ubuntu/
 
 rm /home/ubuntu/pong42_server/database/.env

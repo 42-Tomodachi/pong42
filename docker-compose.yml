@@ -19,8 +19,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    volumes:
-      - ./backend:/app
+    # volumes:
+    #   - ./backend:/app
     networks:
       - webapp
       - database

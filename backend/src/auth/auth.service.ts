@@ -71,7 +71,7 @@ export class AuthService {
   async getAccessToken(code: string): Promise<string> {
     const serverAddr = this.configService.get<string>('FRONTSERVER_ADDR');
     const serverPort = this.configService.get<string>('FRONTSERVER_PORT');
-    const redirTo = serverAddr + serverPort ? ':' + serverPort : '';
+    const redirTo = serverAddr + (serverPort ? ':' + serverPort : '');
     const axiosResult = await axios({
       method: 'post',
       url: `https://api.intra.42.fr/oauth/token`,

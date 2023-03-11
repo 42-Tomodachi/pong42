@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-rm /home/ubuntu/pong42_server/backend/.env
-rm /home/ubuntu/pong42_server/backend/package-lock.json
-rm -rf /home/ubuntu/pong42_server/backend/dist
-sudo rm -rf /home/ubuntu/pong42_server/backend/node_modules
-mv /home/ubuntu/pong42_server/backend/files /home/ubuntu/
+rm ~/pong42_server/backend/.env
+rm ~/pong42_server/backend/package-lock.json
+rm -rf ~/pong42_server/backend/dist
+sudo rm -rf ~/pong42_server/backend/node_modules
+mv ~/pong42_server/backend/files ~/files_backup
 
-rm /home/ubuntu/pong42_server/database/.env
-sudo mv /home/ubuntu/pong42_server/database/pgdata /home/ubuntu/
+rm ~/pong42_server/database/.env
+sudo rm -rf ~/pgdata_backup
+sudo mv ~/pong42_server/database/pgdata ~/pgdata_backup
 
-cd /home/ubuntu/pong42_server
+cd ~/pong42_server
 docker-compose stop
 docker system prune --force

@@ -21,7 +21,7 @@ hooks:
       runas: ubuntu
   AfterInstall:
     - location: scripts/prepare_server.sh
-      timeout: 100
+      timeout: 300
       runas: ubuntu
   ApplicationStart:
     - location: scripts/start_server.sh

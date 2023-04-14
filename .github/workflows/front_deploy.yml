@@ -1,0 +1,43 @@
+name: Front Build and Deploy
+
+env:
+  AWS_REGION: ap-northeast-2
+  S3_BUCKET_NAME: pong42
+  WORK_PATH: ./front
+  RESOURCE_PATH: ./front/build
+
+on:
+  push:
+    branches: [ main-fe, dev-fe ] 
+ 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: checkout release
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: Build project
+      run: |
+        cd $WORK_PATH
+        yarn install
+        yarn build
+       
+    - name: AWS configure credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+        
+    - name: Deploy to S3
+      run: aws s3 sync $RESOURCE_PATH s3://$S3_BUCKET_NAME

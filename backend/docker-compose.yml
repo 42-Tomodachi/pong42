@@ -17,7 +17,7 @@ services:
 
   back:
     build:
-      context: ./backend
+      context: ./server
       dockerfile: Dockerfile
     # volumes:
     #   - ./backend:/app
@@ -30,7 +30,7 @@ services:
       - db
     restart: always
     command: ["./wait-for-it.sh", "postgresql:5432", "--", "npm", "start"]
-    container_name: backend
+    container_name: server
     hostname: backend
 
 networks:

@@ -3,7 +3,9 @@ import { authAPI } from './auth';
 import { usersAPI } from './users';
 import { chatsAPI } from './chats';
 import { gameAPI } from './game';
-const url = process.env.REACT_APP_BACK_API;
+import { serverUrl } from '../constVariables';
+
+const url = serverUrl;
 
 export const instance = axios.create({
   baseURL: url,

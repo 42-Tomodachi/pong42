@@ -5,6 +5,7 @@ import Button from '../common/Button';
 import { AllContext } from '../../store';
 import { io, Socket } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom'; 
+import { serverUrl } from '../../constVariables';
 
 let socket: Socket;
 
@@ -15,7 +16,7 @@ const LadderModal: React.FC = () => {
   const { playingGameInfo, setPlayingGameInfo } = useContext(AllContext).playingGameInfo;
 
   useEffect(() => {
-    socket = io(`${process.env.REACT_APP_BACK_API}/ws-game`, {
+    socket = io(`${serverUrl}/ws-game`, {
       transports: ['websocket'],
       multiplex: false,
       query: {

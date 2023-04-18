@@ -9,6 +9,7 @@ import Chat from '../components/Chat';
 import { AllContext } from '../store';
 import { usersAPI } from '../API';
 import { io, Socket } from 'socket.io-client';
+import { serverUrl } from '../constVariables';
 
 interface HomePageProps {
   menu?: MenuType;
@@ -31,7 +32,7 @@ const HomePage: React.FC<HomePageProps> = ({ menu }) => {
       getWinLoseCount();
     }
     if (menu === 'CHAT') {
-      socket = io(`${process.env.REACT_APP_BACK_API}/ws-chatLobby`, {
+      socket = io(`${serverUrl}/ws-chatLobby`, {
         transports: ['websocket'],
         multiplex: false,
         query: {
@@ -39,7 +40,7 @@ const HomePage: React.FC<HomePageProps> = ({ menu }) => {
         },
       });
     } else if (menu === 'GAME') {
-      socket = io(`${process.env.REACT_APP_BACK_API}/ws-game`, {
+      socket = io(`${serverUrl}/ws-game`, {
         transports: ['websocket'],
         multiplex: false,
         withCredentials: true,

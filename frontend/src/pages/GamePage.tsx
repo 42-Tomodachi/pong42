@@ -9,6 +9,7 @@ import { io, Socket } from 'socket.io-client';
 import GameStart from './GameStart';
 import { useNavigate } from 'react-router-dom';
 import LoadingPage from './LoadingPage';
+import { serverUrl } from '../constVariables';
 
 interface GameInfoDto {
   nicknameOne: string;
@@ -88,7 +89,7 @@ const GamePage: React.FC = () => {
   };
 
   const socketConnect = (roomid: number) => {
-    socket = io(`${process.env.REACT_APP_BACK_API}/ws-game`, {
+    socket = io(`${serverUrl}/ws-game`, {
       transports: ['websocket'],
       multiplex: false,
       query: {

@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Button from '../components/common/Button';
 import LogoImg from '../assets/logo.png';
-
-const OauthUrl = "https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-6b0c9ac3430105c17775dc37fd8cd937ca9c7c01152da77c0c3efd5768f822d0&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code";
+import { OauthUrl } from '../constVariables';
 
 const LoginPage: React.FC = () => {
   return (

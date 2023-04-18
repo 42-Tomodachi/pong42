@@ -7,6 +7,7 @@ import { io, Socket } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 import { usersAPI } from '../../../API';
 import { CANCEL_MATCH_MODAL, IUserData } from '../../../utils/interface';
+import { serverUrl } from '../../../constVariables';
 
 let socket: Socket;
 /**
@@ -46,7 +47,7 @@ const FightReqModal: React.FC<{ matchUserId: number }> = ({ matchUserId }) => {
   useEffect(() => {
     getMatchUser();
     if (user) {
-      socket = io(`${process.env.REACT_APP_BACK_API}/ws-game`, {
+      socket = io(`${serverUrl}/ws-game`, {
         transports: ['websocket'],
         multiplex: false,
         query: {

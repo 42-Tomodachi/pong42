@@ -12,6 +12,7 @@ import { authAPI, chatsAPI } from '../API';
 import backaway from '../assets/backaway.png';
 import { useNavigate } from 'react-router-dom';
 import io, { Socket } from 'socket.io-client';
+import { serverUrl } from '../constVariables';
 
 let socket: Socket;
 
@@ -36,7 +37,7 @@ const ChatPage: React.FC = () => {
 
   useEffect(() => {
     if (user && roomId) {
-      socket = io(`${process.env.REACT_APP_BACK_API}/ws-chat`, {
+      socket = io(`${serverUrl}/ws-chat`, {
         transports: ['websocket'],
         multiplex: false,
         query: {

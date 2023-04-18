@@ -27,7 +27,7 @@ jobs:
     #     cp -r $GITHUB_WORKSPACE . 
       
     - name: archive drcloud 
-      run: tar cvfz ./drcloud.tar.gz *
+      run: tar cvfz ./drcloud.tar.gz ./backend/*
        
     - name: AWS configure credentials
       uses: aws-actions/configure-aws-credentials@v1
